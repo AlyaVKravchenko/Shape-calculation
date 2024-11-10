@@ -1,0 +1,8 @@
+Circle Center 1 1 Radius 2
+
+Rectangle TopRight 2 2 BottomLeft 1 1
+Circle Center 1 1 Radius 2
+Circle Center 1 1 Radius 8
+Square TopRight 1 1 Side 1
+Square TopRight 1 1 Side 5
+Rectangle TopRight 3 3 BottomLeft 1 1
