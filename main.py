@@ -25,6 +25,8 @@ class Shape:
         else:
             raise ValueError(f"Unknown shape type: {shape_type}")
 
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__} Perimeter {self.perimeter()} Area {self.area()}"
 
 
 class Rectangle(Shape):
@@ -41,18 +43,12 @@ class Rectangle(Shape):
     def area(self) -> int | float:
         return self.width * self.height
 
-    def __str__(self) -> str:
-        return f"Rectangle Perimeter {self.perimeter()} Area {self.area()}"
-
 
 class Square(Rectangle):
     def __init__(self, x1: int | float,
                  y1: int | float,
                  side: int | float) -> None:
         super().__init__(x1, y1, x1+side, y1+side)
-
-    def __str__(self) -> str:
-        return f"Square Perimeter {self.perimeter()} Area {self.area()}"
 
 
 class Circle(Shape):
@@ -64,9 +60,6 @@ class Circle(Shape):
 
     def area(self) -> int | float:
         return round(math.pi * self.radius ** 2, 2)
-
-    def __str__(self) -> str:
-        return f"Circle Perimeter {self.perimeter()} Area {self.area()}"
 
 
 def main() -> None:
