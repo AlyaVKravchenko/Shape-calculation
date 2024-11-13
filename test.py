@@ -4,15 +4,15 @@ from main import Square, Rectangle, Circle, Shape
 
 # Тести для класу Square
 def test_square_perimeter():
-    square = Square(4)
+    square = Square(1, 1, 4)
     assert square.perimeter() == 16
 
 def test_square_area():
-    square = Square(4)
+    square = Square(1, 1, 4)
     assert square.area() == 16
 
 def test_square_str():
-    square = Square(3)
+    square = Square(1, 1, 3)
     assert str(square) == "Square Perimeter 12 Area 9"
 
 # Тести для класу Rectangle

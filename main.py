@@ -12,7 +12,9 @@ class Shape:
     def create_shape(cls, data: list):
         shape_type = data[0]
         if shape_type == "Square":
-            return Square(float(data[5]))
+            return Square(float(data[2]),
+                          float(data[3]),
+                          float(data[5]))
         elif shape_type == "Rectangle":
             return Rectangle(float(data[2]),
                              float(data[3]),
@@ -23,19 +25,6 @@ class Shape:
         else:
             raise ValueError(f"Unknown shape type: {shape_type}")
 
-
-class Square(Shape):
-    def __init__(self, side: int | float) -> None:
-       self.side = side
-
-    def perimeter(self) -> int | float:
-        return 4 * self.side
-
-    def area(self) -> int | float:
-        return self.side ** 2
-
-    def __str__(self) -> str:
-        return f"Square Perimeter {self.perimeter()} Area {self.area()}"
 
 
 class Rectangle(Shape):
@@ -54,6 +43,16 @@ class Rectangle(Shape):
 
     def __str__(self) -> str:
         return f"Rectangle Perimeter {self.perimeter()} Area {self.area()}"
+
+
+class Square(Rectangle):
+    def __init__(self, x1: int | float,
+                 y1: int | float,
+                 side: int | float) -> None:
+        super().__init__(x1, y1, x1+side, y1+side)
+
+    def __str__(self) -> str:
+        return f"Square Perimeter {self.perimeter()} Area {self.area()}"
 
 
 class Circle(Shape):
