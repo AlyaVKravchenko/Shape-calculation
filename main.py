@@ -12,16 +12,11 @@ class Shape:
     def create_shape(cls, data: list):
         shape_type = data[0]
         if shape_type == "Square":
-            return Square(float(data[2]),
-                          float(data[3]),
-                          float(data[5]))
+            return Square(data)
         elif shape_type == "Rectangle":
-            return Rectangle(float(data[2]),
-                             float(data[3]),
-                             float(data[5]),
-                             float(data[6]))
+            return Rectangle(data)
         elif shape_type == "Circle":
-            return Circle(float(data[5]))
+            return Circle(data)
         else:
             raise ValueError(f"Unknown shape type: {shape_type}")
 
@@ -30,12 +25,9 @@ class Shape:
 
 
 class Rectangle(Shape):
-    def __init__(self, x1: int | float,
-                 y1: int | float,
-                 x2: int | float,
-                 y2: int | float) -> None:
-        self.width = abs(x2 - x1)
-        self.height = abs(y2 - y1)
+    def __init__(self, data: list) -> None:
+        self.width = abs(float(data[5]) - float(data[2]))
+        self.height = abs(float(data[6]) - float(data[3]))
 
     def perimeter(self) -> int | float:
         return 2 * (self.width + self.height)
@@ -45,15 +37,16 @@ class Rectangle(Shape):
 
 
 class Square(Rectangle):
-    def __init__(self, x1: int | float,
-                 y1: int | float,
-                 side: int | float) -> None:
-        super().__init__(x1, y1, x1+side, y1+side)
+    def __init__(self, data: list) -> None:
+        super().__init__(["Square", "TopRight",
+                          data[2], data[3], "BottomRight",
+                          float(data[2])+float(data[5]),
+                          float(data[3])+float(data[5])])
 
 
 class Circle(Shape):
-    def __init__(self, radius: int | float) -> None:
-        self.radius = radius
+    def __init__(self, data: list) -> None:
+        self.radius = float(data[5])
 
     def perimeter(self) -> int | float:
         return round(2 * math.pi * self.radius, 2)

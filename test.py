@@ -4,41 +4,41 @@ from main import Square, Rectangle, Circle, Shape
 
 # Тести для класу Square
 def test_square_perimeter():
-    square = Square(1, 1, 4)
+    square = Square(["Square", "TopRight", "1", "1", "Side", '4'])
     assert square.perimeter() == 16
 
 def test_square_area():
-    square = Square(1, 1, 4)
+    square = Square(["Square", "TopRight", "1", "1", "Side", '4'])
     assert square.area() == 16
 
 def test_square_str():
-    square = Square(1, 1, 3)
-    assert str(square) == "Square Perimeter 12 Area 9"
+    square = Square(["Square", "TopRight", "1", "1", "Side", '3'])
+    assert str(square) == "Square Perimeter 12.0 Area 9.0"
 
 # Тести для класу Rectangle
 def test_rectangle_perimeter():
-    rectangle = Rectangle(0, 0, 3, 4)
+    rectangle = Rectangle(["Rectangle", "TopRight", "0", "0", "BottomLeft", "3", "4"])
     assert rectangle.perimeter() == 14
 
 def test_rectangle_area():
-    rectangle = Rectangle(0, 0, 3, 4)
+    rectangle = Rectangle(["Rectangle", "TopRight", "0", "0", "BottomLeft", "3", "4"])
     assert rectangle.area() == 12
 
 def test_rectangle_str():
-    rectangle = Rectangle(0, 0, 3, 4)
-    assert str(rectangle) == "Rectangle Perimeter 14 Area 12"
+    rectangle = Rectangle(["Rectangle", "TopRight", "0", "0", "BottomLeft", "3", "4"])
+    assert str(rectangle) == "Rectangle Perimeter 14.0 Area 12.0"
 
 # Тести для класу Circle
 def test_circle_perimeter():
-    circle = Circle(2)
+    circle = Circle(["Circle", "Center", "1", "1", "Radius", "2"])
     assert circle.perimeter() == round(2 * math.pi * 2, 2)
 
 def test_circle_area():
-    circle = Circle(2)
+    circle = Circle(["Circle", "Center", "1", "1", "Radius", "2"])
     assert circle.area() == round(math.pi * 2 ** 2, 2)
 
 def test_circle_str():
-    circle = Circle(1)
+    circle = Circle(["Circle", "Center", "1", "1", "Radius", "1"])
     assert str(circle) == f"Circle Perimeter {round(2 * math.pi, 2)} Area {round(math.pi, 2)}"
 
 # Тести для методу create_shape
