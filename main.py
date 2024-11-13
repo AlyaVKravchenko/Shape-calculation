@@ -26,8 +26,12 @@ class Shape:
 
 class Rectangle(Shape):
     def __init__(self, data: list) -> None:
-        self.width = abs(float(data[5]) - float(data[2]))
-        self.height = abs(float(data[6]) - float(data[3]))
+        x1 = float(data[2])
+        y1 = float(data[3])
+        x2 = float(data[5])
+        y2 = float(data[6])
+        self.width = abs(x2 - x1)
+        self.height = abs(y2 - y1)
 
     def perimeter(self) -> int | float:
         return 2 * (self.width + self.height)
@@ -38,10 +42,13 @@ class Rectangle(Shape):
 
 class Square(Rectangle):
     def __init__(self, data: list) -> None:
+        x1 = float(data[2])
+        y1 = float(data[3])
+        side = float(data[5])
         super().__init__(["Square", "TopRight",
-                          data[2], data[3], "BottomRight",
-                          float(data[2])+float(data[5]),
-                          float(data[3])+float(data[5])])
+                          x1, y1, "BottomRight",
+                          x1+side,
+                          y1+side])
 
 
 class Circle(Shape):
