@@ -8,17 +8,6 @@ class Shape:
     def area(self) -> None:
         pass
 
-    @classmethod
-    def create_shape(cls, data: list):
-        shape_type = data[0]
-        if shape_type == "Square":
-            return Square(data)
-        elif shape_type == "Rectangle":
-            return Rectangle(data)
-        elif shape_type == "Circle":
-            return Circle(data)
-        else:
-            raise ValueError(f"Unknown shape type: {shape_type}")
 
     def __str__(self) -> str:
         return f"{self.__class__.__name__} Perimeter {self.perimeter()} Area {self.area()}"
@@ -61,6 +50,17 @@ class Circle(Shape):
     def area(self) -> int | float:
         return round(math.pi * self.radius ** 2, 2)
 
+def create_shape(data: list):
+    shape_dict = {
+        "Square": Square,
+        "Rectangle": Rectangle,
+        "Circle": Circle
+    }
+    shape_type = data[0]
+    if shape_type in shape_dict:
+        return shape_dict[shape_type](data)
+    else:
+        raise ValueError(f"Unknown shape type: {shape_type}")
 
 def main() -> None:
     shape_info = []
@@ -70,7 +70,7 @@ def main() -> None:
                 print(line)
                 data = line.split(" ")
                 print(shape_info)
-                shape = Shape.create_shape(data)
+                shape = create_shape(data)
                 print(shape)
 
 

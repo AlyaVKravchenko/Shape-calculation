@@ -1,6 +1,6 @@
 import pytest
 import math
-from main import Square, Rectangle, Circle, Shape
+from main import Square, Rectangle, Circle, Shape, create_shape
 
 # Тести для класу Square
 def test_square_perimeter():
@@ -44,21 +44,21 @@ def test_circle_str():
 # Тести для методу create_shape
 def test_create_square():
     data = ["Square", "TopRight", "1", "1", "Side", "4"]
-    shape = Shape.create_shape(data)
+    shape = create_shape(data)
     assert isinstance(shape, Square)
     assert shape.perimeter() == 16
     assert shape.area() == 16
 
 def test_create_rectangle():
     data = ["Rectangle", "TopRight", "4", "5", "BottomLeft", "1", "1"]
-    shape = Shape.create_shape(data)
+    shape = create_shape(data)
     assert isinstance(shape, Rectangle)
     assert shape.perimeter() == 14
     assert shape.area() == 12
 
 def test_create_circle():
     data = ["Circle", "Center", "1", "1", "Radius", "2"]
-    shape = Shape.create_shape(data)
+    shape = create_shape(data)
     assert isinstance(shape, Circle)
     assert shape.perimeter() == round(2 * math.pi * 2, 2)
     assert shape.area() == round(math.pi * 2 ** 2, 2)
@@ -66,4 +66,4 @@ def test_create_circle():
 def test_create_shape_invalid():
     data = ["Triangle", "Point1", "0", "0", "Point2", "1", "1", "Point3", "2", "2"]
     with pytest.raises(ValueError):
-        Shape.create_shape(data)
+        create_shape(data)
